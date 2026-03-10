@@ -4,7 +4,7 @@ $conn=mysqli_connect("localhost","root","","storydb");
 
 if(!$conn)
 {
-echo "Database Error";
+die("Database Error: " . mysqli_connect_error());
 }
 
 ?>

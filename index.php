@@ -43,10 +43,10 @@ include "db.php";
 
 <?php
 
-if(isset($_GET['search']))
+if(isset($_GET['search']) && !empty($_GET['search']))
 {
 
-$s=$_GET['search'];
+$s=mysqli_real_escape_string($conn, $_GET['search']);
 
 $query="select * from stories where title like '%$s%'";
 
@@ -60,8 +60,9 @@ $query="select * from stories";
 
 $result=mysqli_query($conn,$query);
 
-while($row=mysqli_fetch_array($result))
-{
+if ($result && mysqli_num_rows($result) > 0) {
+    while($row=mysqli_fetch_array($result))
+    {
 
 ?>
 
@@ -93,6 +94,10 @@ Read Story
 
 <?php
 
+    }
+
+} else {
+    echo "<p style='text-align:center;'>No stories found.</p>";
 }
 
 ?>

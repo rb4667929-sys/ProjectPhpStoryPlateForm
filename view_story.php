@@ -2,13 +2,15 @@
 
 include "db.php";
 
-$id=$_GET['id'];
+if(isset($_GET['id'])) {
+    $id=intval($_GET['id']);
 
-$query="select * from stories where id=$id";
+    $query="select * from stories where id=$id";
 
-$result=mysqli_query($conn,$query);
+    $result=mysqli_query($conn,$query);
 
-$row=mysqli_fetch_array($result);
+    if($result && mysqli_num_rows($result) > 0) {
+        $row=mysqli_fetch_array($result);
 
 ?>
 
@@ -58,3 +60,12 @@ Author:
 </body>
 
 </html>
+
+<?php
+    } else {
+        echo "<div style='text-align:center; padding: 50px;'><h2>Story not found.</h2><a href='index.php'><button>Go Back</button></a></div>";
+    }
+} else {
+    echo "<div style='text-align:center; padding: 50px;'><h2>Invalid Request.</h2><a href='index.php'><button>Go Back</button></a></div>";
+}
+?>

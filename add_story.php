@@ -23,19 +23,19 @@
 
 Title
 
-<input type="text" name="title">
+<input type="text" name="title" required>
 
 <br><br>
 
 Author
 
-<input type="text" name="author">
+<input type="text" name="author" required>
 
 <br><br>
 
 Story
 
-<textarea name="content" rows="10">
+<textarea name="content" rows="10" required>
 
 </textarea>
 

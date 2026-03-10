@@ -2,16 +2,18 @@
 
 include "db.php";
 
-$title=$_POST['title'];
+if(isset($_POST['title']) && isset($_POST['author']) && isset($_POST['content'])) {
+    $title=mysqli_real_escape_string($conn, $_POST['title']);
 
-$author=$_POST['author'];
+    $author=mysqli_real_escape_string($conn, $_POST['author']);
 
-$content=$_POST['content'];
+    $content=mysqli_real_escape_string($conn, $_POST['content']);
 
-$query="insert into stories(title,author,content)
-values('$title','$author','$content')";
+    $query="insert into stories(title,author,content)
+    values('$title','$author','$content')";
 
-mysqli_query($conn,$query);
+    mysqli_query($conn,$query);
+}
 
 header("location:index.php");
 
